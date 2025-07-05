@@ -1,0 +1,2 @@
+# android_kernel_huawei_EMUI_Pangu_KernelSU
+集成了几种KernelSU的盘古内核，并继续维护。
