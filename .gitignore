@@ -1,0 +1,11 @@
+out
+drivers/kernelsu
+.vscode
+log*.txt
+1_LOGS/
+build_KSU_*.sh
+*.img
+*.gz
+*.zip
+kernel_log*.txt
+arch/arm64/configs/*_test_defconfig
