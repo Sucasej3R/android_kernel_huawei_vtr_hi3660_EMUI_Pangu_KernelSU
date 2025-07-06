@@ -3,6 +3,16 @@
 [下载统计](https://gra.caldis.me/?url=https://github.com/yunmo2007/android_kernel_huawei_vtr_emui9_KernelSU_NEXT)
 
 ***
+## 核试验基地！（狗头）
+> [!TIP]
+> 嗯？你居然找到这来了，这里是正在测试的内核计划！\
+> 这里暂时不会发布release，所以要想要测试的话去action去下载来尝鲜吧！\
+> 说白了就是在打复活赛啦！(狗头) \
+> 关于action中的内核的命名遵守以下规则：\
+> 例子：Pangu_P10_KSU_NEXT_N-* \
+> 解释：内核基础 _ 适用机型（见下文） _ 适配的管理器类别 _ 是否集成Susfs（N为无，S为有）-*
+
+***
 ## 紧急通知：
 > [!CAUTION]
 > 上游仓库出现问题，现在正在紧急处理，原kernelSU Next仓库缺少next-susfs分支，现在需要手动编写分支支持内核编译\
@@ -13,7 +23,7 @@
 > 在修复计划完成之前，此仓库的Action构架无限期停止！
 ### 后续计划：
 > [!NOTE]
-> - [ ] next-susfs分支手动重构
+> - [x] next-susfs分支手动重构
 > - [ ] commit重置与文件结构更改
 > - [ ] 添加其他SU管理器的支持
 > - [ ] 完成上述任务后的仓库地址变动
