@@ -45,9 +45,9 @@ jobs:
 
     - name: Copy KSU base files to kernel
       run: |
-        cp $(pwd)/KSU_not_kprobe_base_file/drivers/input/input.c $(pwd)/drivers/input/
-        cp $(pwd)/KSU_not_kprobe_base_file/fs/* $(pwd)/fs/
-        cp $(pwd)/KSU_not_kprobe_base_file/security/selinux/hooks.c $(pwd)/security/selinux/
+        cp -r $(pwd)/KSU_not_kprobe_base_file/drivers/input/input.c $(pwd)/drivers/input/
+        cp -r $(pwd)/KSU_not_kprobe_base_file/fs/* $(pwd)/fs/
+        cp -r $(pwd)/KSU_not_kprobe_base_file/security/selinux/hooks.c $(pwd)/security/selinux/
 
     - name: Build P10 KSU Kernel
       run: |
