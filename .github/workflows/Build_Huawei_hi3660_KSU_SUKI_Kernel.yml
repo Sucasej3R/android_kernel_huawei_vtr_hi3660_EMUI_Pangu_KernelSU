@@ -100,7 +100,7 @@ jobs:
         rm -rf drivers/kernelsu
         rm -rf out
         rm -rf Pangu_V9_KSU_SUKI_N-*.img
-        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-main
+        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-1.5.7
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
@@ -131,7 +131,7 @@ jobs:
         rm -rf drivers/kernelsu
         rm -rf out
         rm -rf Pangu_V9_KSU_SUKI_S_KPM-*.img
-        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-main
+        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-1.5.7
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
