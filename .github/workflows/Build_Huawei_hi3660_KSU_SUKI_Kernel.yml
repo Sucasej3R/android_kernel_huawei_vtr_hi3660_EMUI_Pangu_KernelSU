@@ -114,6 +114,7 @@ jobs:
         chmod 777 patch_linux
         ./patch_linux
         mv -f oImage Image
+        rm -f Image.gz
         gzip -k Image Image.gz
         cd ..
         cd ..
@@ -156,6 +157,7 @@ jobs:
         chmod 777 patch_linux
         ./patch_linux
         mv -f oImage Image
+        rm -f Image.gz
         gzip -k Image Image.gz
         cd ..
         cd ..
