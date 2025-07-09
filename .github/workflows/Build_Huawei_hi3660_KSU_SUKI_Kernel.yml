@@ -104,6 +104,7 @@ jobs:
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
+        sudo ln -sf /usr/bin/python2.7 /usr/bin/python
         sudo chmod -R 777 $(pwd)/
         make $KERNEL_CMDLINE Pangu_V9_KSU_SUKI_S_KPM_defconfig
         make $KERNEL_CMDLINE -j$(nproc --all)
