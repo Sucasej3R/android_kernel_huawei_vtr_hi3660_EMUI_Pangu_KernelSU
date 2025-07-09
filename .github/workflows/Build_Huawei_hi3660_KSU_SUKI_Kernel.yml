@@ -110,7 +110,7 @@ jobs:
         make $KERNEL_CMDLINE -j$(nproc --all)
         echo "🛠️ 正在修补 Image 文件..."
         cd out/arch/arm64/boot
-        wget https://github.com/ShirkNeko/SukiSU_KernelPatch_patch/releases/download/0.12/patch_linux
+        wget https://github.com/ShirkNeko/SukiSU_KernelPatch_patch/releases/download/0.12.0/patch_linux
         chmod 777 patch_linux
         ./patch_linux
         cd ..
@@ -150,9 +150,9 @@ jobs:
         make $KERNEL_CMDLINE -j$(nproc --all)
         echo "🛠️ 正在修补 Image 文件..."
         cd out/arch/arm64/boot
-        curl -LSs " https://raw.githubusercontent.com/ShirkNeko/SukiSU_patch/refs/heads/main/kpm/patch_linux" -o patch
-        chmod 777 patch
-        ./patch
+        wget https://github.com/ShirkNeko/SukiSU_KernelPatch_patch/releases/download/0.12.0/patch_linux
+        chmod 777 patch_linux
+        ./patch_linux
         cd ..
         cd ..
         cd ..
