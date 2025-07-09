@@ -113,6 +113,8 @@ jobs:
         wget https://github.com/ShirkNeko/SukiSU_KernelPatch_patch/releases/download/0.12.0/patch_linux
         chmod 777 patch_linux
         ./patch_linux
+        mv -f oImage Image
+        gzip -k Image Image.gz
         cd ..
         cd ..
         cd ..
@@ -153,6 +155,8 @@ jobs:
         wget https://github.com/ShirkNeko/SukiSU_KernelPatch_patch/releases/download/0.12.0/patch_linux
         chmod 777 patch_linux
         ./patch_linux
+        mv -f oImage Image
+        gzip -k Image Image.gz
         cd ..
         cd ..
         cd ..
