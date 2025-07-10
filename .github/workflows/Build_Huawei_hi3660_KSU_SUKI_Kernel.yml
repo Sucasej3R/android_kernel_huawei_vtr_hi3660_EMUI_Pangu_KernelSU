@@ -213,6 +213,9 @@ jobs:
 
     - name: Clean SUKI_KPM support files to kernel
       run: |
+        rm -rf $(pwd)/arch/
+        rm -rf $(pwd)/kernel/
+        rm -rf $(pwd)/include/
         cp -r KSU_Suki_KPM_clean_support_file/* $(pwd)/
 
     - name: Copy Susfs base files to kernel
