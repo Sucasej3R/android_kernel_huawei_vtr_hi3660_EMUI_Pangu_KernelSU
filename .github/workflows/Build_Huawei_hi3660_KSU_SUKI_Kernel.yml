@@ -115,6 +115,16 @@ jobs:
         name: Pangu_P10_KSU_SUKI_N-kernel-${{ steps.get_time.outputs.TIME }}
         path: "Pangu_P10_KSU_SUKI_N-*.img"
 
+    - name: Copy SUKI_KPM support files to kernel
+      run: |
+        mkdir -p $(pwd)/KSU_Suki_KPM_clean_support_file/arch/
+        mkdir -p $(pwd)/KSU_Suki_KPM_clean_support_file/kernel/
+        mkdir -p $(pwd)/KSU_Suki_KPM_clean_support_file/include/
+        cp -r arch/* $(pwd)/KSU_Suki_KPM_clean_support_file/arch/
+        cp -r kernel/* $(pwd)/KSU_Suki_KPM_clean_support_file/kernel/
+        cp -r include/* $(pwd)/KSU_Suki_KPM_clean_support_file/include/
+        cp -r KSU_Suki_KPM_support_file/* $(pwd)/
+
     - name: Build V9 KSU_SUKI_N_KPM Kernel
       run: |
         if [ -d include/config ];
@@ -200,6 +210,10 @@ jobs:
       with:
         name: Pangu_P10_KSU_SUKI_N_KPM-kernel-${{ steps.get_time.outputs.TIME }}
         path: "Pangu_P10_KSU_SUKI_N_KPM-*.img"
+
+    - name: Clean SUKI_KPM support files to kernel
+      run: |
+        cp -r KSU_Suki_KPM_clean_support_file/* $(pwd)/
 
     - name: Copy Susfs base files to kernel
       run: |
