@@ -115,6 +115,92 @@ jobs:
         name: Pangu_P10_KSU_SUKI_N-kernel-${{ steps.get_time.outputs.TIME }}
         path: "Pangu_P10_KSU_SUKI_N-*.img"
 
+    - name: Build V9 KSU_SUKI_N_KPM Kernel
+      run: |
+        if [ -d include/config ];
+         then
+          echo "Find config,will remove it"
+          rm -rf include/config
+        else
+          echo "No Config,good."
+        fi
+
+        rm -rf SukiSU-Ultra
+        rm -rf drivers/kernelsu
+        rm -rf out
+        rm -rf Pangu_P10_KSU_SUKI_N-*.img
+        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s nongki
+        export PATH=$(pwd)/ToolChains/bin/:$PATH
+        export ARCH=arm64
+        export SUBARCH=arm64
+        sudo ln -sf /usr/bin/python2.7 /usr/bin/python
+        sudo chmod -R 777 $(pwd)/
+        make $KERNEL_CMDLINE Pangu_V9_KSU_SUKI_N_KPM_defconfig
+        make $KERNEL_CMDLINE -j$(nproc --all)
+        echo "🛠️ 正在修补 Image 文件..."
+        cd out/arch/arm64/boot
+        wget https://github.com/ShirkNeko/SukiSU_KernelPatch_patch/releases/download/0.12.0/patch_linux
+        chmod 777 patch_linux
+        ./patch_linux
+        mv -f oImage Image
+        rm -f Image.gz
+        gzip -k Image Image.gz
+        cd ..
+        cd ..
+        cd ..
+        cd ..
+        tools/mkbootimg --kernel out/arch/arm64/boot/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=enforcing buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_V9_KSU_SUKI_N_KPM-enforcing-${{ steps.get_time.outputs.TIME }}.img
+        tools/mkbootimg --kernel out/arch/arm64/boot/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=permissive buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_V9_KSU_SUKI_N_KPM-permissive-${{ steps.get_time.outputs.TIME }}.img
+
+    - name: Upload V9 KSU_SUKI_N_KPM Kernel
+      uses: actions/upload-artifact@v4
+      with:
+        name: Pangu_V9_KSU_SUKI_N_KPM-kernel-${{ steps.get_time.outputs.TIME }}
+        path: "Pangu_V9_KSU_SUKI_N_KPM-*.img"
+
+    - name: Build P10 KSU_SUKI_N_KPM Kernel
+      run: |
+        if [ -d include/config ];
+         then
+          echo "Find config,will remove it"
+          rm -rf include/config
+        else
+          echo "No Config,good."
+        fi
+
+        rm -rf SukiSU-Ultra
+        rm -rf drivers/kernelsu
+        rm -rf out
+        rm -rf Pangu_V9_KSU_SUKI_N_KPM-*.img
+        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s nongki
+        export PATH=$(pwd)/ToolChains/bin/:$PATH
+        export ARCH=arm64
+        export SUBARCH=arm64
+        sudo ln -sf /usr/bin/python2.7 /usr/bin/python
+        sudo chmod -R 777 $(pwd)/
+        make $KERNEL_CMDLINE Pangu_P10_KSU_SUKI_N_KPM_defconfig
+        make $KERNEL_CMDLINE -j$(nproc --all)
+        echo "🛠️ 正在修补 Image 文件..."
+        cd out/arch/arm64/boot
+        wget https://github.com/ShirkNeko/SukiSU_KernelPatch_patch/releases/download/0.12.0/patch_linux
+        chmod 777 patch_linux
+        ./patch_linux
+        mv -f oImage Image
+        rm -f Image.gz
+        gzip -k Image Image.gz
+        cd ..
+        cd ..
+        cd ..
+        cd ..
+        tools/mkbootimg --kernel out/arch/arm64/boot/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=enforcing buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_P10_KSU_SUKI_N_KPM-enforcing-${{ steps.get_time.outputs.TIME }}.img
+        tools/mkbootimg --kernel out/arch/arm64/boot/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=permissive buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_P10_KSU_SUKI_N_KPM-permissive-${{ steps.get_time.outputs.TIME }}.img
+
+    - name: Upload P10 KSU_SUKI_N_KPM Kernel
+      uses: actions/upload-artifact@v4
+      with:
+        name: Pangu_P10_KSU_SUKI_N_KPM-kernel-${{ steps.get_time.outputs.TIME }}
+        path: "Pangu_P10_KSU_SUKI_N_KPM-*.img"
+
     - name: Copy Susfs base files to kernel
       run: |
         cp -r KSU_Susfs_base_file/1.5.5/fs/susfs.c $(pwd)/fs/
@@ -156,7 +242,7 @@ jobs:
         rm -rf SukiSU-Ultra
         rm -rf drivers/kernelsu
         rm -rf out
-        rm -rf Pangu_P10_KSU_SUKI_N-*.img
+        rm -rf Pangu_P10_KSU_SUKI_N_KPM-*.img
         curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-1.5.7
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
