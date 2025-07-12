@@ -99,7 +99,6 @@ jobs:
         rm -rf SukiSU-Ultra
         rm -rf drivers/kernelsu
         rm -rf out
-        cp kernelpatch-b/Makefile $(pwd)/arch/arm64/
         curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-1.5.7
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
@@ -111,15 +110,17 @@ jobs:
         echo "🛠️ 正在修补 Image 文件..."
         mkdir -p $(pwd)/kernelpatch-a/
         cp out/arch/arm64/boot/Image $(pwd)/kernelpatch-a/
+        cp out/ arch/arm64/boot/dts/auto-generate/config/hi3660/*.dtb $(pwd)/kernelpatch-a/
         cd kernelpatch-a/
         wget https://github.com/ShirkNeko/SukiSU_KernelPatch_patch/releases/download/0.12.0/patch_linux
         chmod 777 patch_linux
         ./patch_linux
         mv -f oImage Image
         gzip -k Image Image.gz
+        cat Image.gz *.dtb > Image.gz-dtb
         cd ..
-        tools/mkbootimg --kernel kernelpatch-a/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=enforcing buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_V9_KSU_SUKI_S_KPM_DTB-enforcing-${{ steps.get_time.outputs.TIME }}.img
-        tools/mkbootimg --kernel kernelpatch-a/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=permissive buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_V9_KSU_SUKI_S_KPM_DTB-permissive-${{ steps.get_time.outputs.TIME }}.img
+        tools/mkbootimg --kernel kernelpatch-a/Image.gz-dtb --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=enforcing buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_V9_KSU_SUKI_S_KPM_DTB-enforcing-${{ steps.get_time.outputs.TIME }}.img
+        tools/mkbootimg --kernel kernelpatch-a/Image.gz-dtb --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=permissive buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_V9_KSU_SUKI_S_KPM_DTB-permissive-${{ steps.get_time.outputs.TIME }}.img
 
     - name: Upload V9 KSU_SUKI_S_KPM_DTB Kernel
       uses: actions/upload-artifact@v4
@@ -142,7 +143,6 @@ jobs:
         rm -rf out
         rm -rf Pangu_V9_KSU_SUKI_S_KPM_DTB-*.img
         rm -rf kernelpatch-a
-        cp kernelpatch-b/Makefile $(pwd)/arch/arm64/
         curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-1.5.7
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
@@ -154,17 +154,19 @@ jobs:
         echo "🛠️ 正在修补 Image 文件..."
         mkdir -p $(pwd)/kernelpatch-a/
         cp out/arch/arm64/boot/Image $(pwd)/kernelpatch-a/
+        cp out/ arch/arm64/boot/dts/auto-generate/config/hi3660/*.dtb $(pwd)/kernelpatch-a/
         cd kernelpatch-a/
         wget https://github.com/ShirkNeko/SukiSU_KernelPatch_patch/releases/download/0.12.0/patch_linux
         chmod 777 patch_linux
         ./patch_linux
         mv -f oImage Image
         gzip -k Image Image.gz
+        cat Image.gz *.dtb > Image.gz-dtb
         cd ..
-        tools/mkbootimg --kernel kernelpatch-a/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=enforcing buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_P10_KSU_SUKI_S_KPM_DTB-enforcing-${{ steps.get_time.outputs.TIME }}.img
-        tools/mkbootimg --kernel kernelpatch-a/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=permissive buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_P10_KSU_SUKI_S_KPM_DTB-permissive-${{ steps.get_time.outputs.TIME }}.img
+        tools/mkbootimg --kernel kernelpatch-a/Image.gz-dtb --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=enforcing buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_P10_KSU_SUKI_S_KPM_DTB-enforcing-${{ steps.get_time.outputs.TIME }}.img
+        tools/mkbootimg --kernel kernelpatch-a/Image.gz-dtb --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=permissive buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_P10_KSU_SUKI_S_KPM_DTB-permissive-${{ steps.get_time.outputs.TIME }}.img
 
-    - name: Upload P10 KSU_SUKI_S_KPM Kernel
+    - name: Upload P10 KSU_SUKI_S_KPM_DTB Kernel
       uses: actions/upload-artifact@v4
       with:
         name: Pangu_P10_KSU_SUKI_S_KPM_DTB-kernel-${{ steps.get_time.outputs.TIME }}
