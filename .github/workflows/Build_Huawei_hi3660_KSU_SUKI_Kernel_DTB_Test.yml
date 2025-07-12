@@ -110,7 +110,7 @@ jobs:
         echo "🛠️ 正在修补 Image 文件..."
         mkdir -p $(pwd)/kernelpatch-a/
         cp out/arch/arm64/boot/Image $(pwd)/kernelpatch-a/
-        cp out/arch/arm64/boot/dts/hisilicon/*.dtb $(pwd)/kernelpatch-a/
+        cp out/arch/arm64/boot/dts/qcom/*.dtb $(pwd)/kernelpatch-a/
         cd kernelpatch-a/
         wget https://github.com/ShirkNeko/SukiSU_KernelPatch_patch/releases/download/0.12.0/patch_linux
         chmod 777 patch_linux
@@ -142,6 +142,7 @@ jobs:
         rm -rf drivers/kernelsu
         rm -rf out
         rm -rf Pangu_V9_KSU_SUKI_S_KPM-*.img
+        rm -rf kernelpatch-a
         curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-1.5.7
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
@@ -153,7 +154,7 @@ jobs:
         echo "🛠️ 正在修补 Image 文件..."
         mkdir -p $(pwd)/kernelpatch-a/
         cp out/arch/arm64/boot/Image $(pwd)/kernelpatch-a/
-        cp out/arch/arm64/boot/dts/hisilicon/*.dtb $(pwd)/kernelpatch-a/
+        cp out/arch/arm64/boot/dts/qcom/*.dtb $(pwd)/kernelpatch-a/
         cd kernelpatch-a/
         wget https://github.com/ShirkNeko/SukiSU_KernelPatch_patch/releases/download/0.12.0/patch_linux
         chmod 777 patch_linux
