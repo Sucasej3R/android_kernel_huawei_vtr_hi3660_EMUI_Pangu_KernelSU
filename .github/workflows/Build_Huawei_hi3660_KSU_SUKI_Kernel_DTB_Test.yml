@@ -86,7 +86,7 @@ jobs:
       run: |
         cp -r KSU_Suki_KPM_support_file/* $(pwd)/
 
-    - name: Build V9 KSU_SUKI_S_KPM Kernel
+    - name: Build V9 KSU_SUKI_S_KPM_DTB Kernel
       run: |
         if [ -d include/config ];
          then
@@ -99,6 +99,7 @@ jobs:
         rm -rf SukiSU-Ultra
         rm -rf drivers/kernelsu
         rm -rf out
+        cp kernelpatch-b/Makefile $(pwd)/arch/arm64/
         curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-1.5.7
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
@@ -117,16 +118,16 @@ jobs:
         mv -f oImage Image
         gzip -k Image Image.gz
         cd ..
-        tools/mkbootimg --kernel kernelpatch-a/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=enforcing buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_V9_KSU_SUKI_S_KPM-enforcing-${{ steps.get_time.outputs.TIME }}.img
-        tools/mkbootimg --kernel kernelpatch-a/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=permissive buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_V9_KSU_SUKI_S_KPM-permissive-${{ steps.get_time.outputs.TIME }}.img
+        tools/mkbootimg --kernel kernelpatch-a/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=enforcing buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_V9_KSU_SUKI_S_KPM_DTB-enforcing-${{ steps.get_time.outputs.TIME }}.img
+        tools/mkbootimg --kernel kernelpatch-a/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=permissive buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_V9_KSU_SUKI_S_KPM_DTB-permissive-${{ steps.get_time.outputs.TIME }}.img
 
-    - name: Upload V9 KSU_SUKI_S_KPM Kernel
+    - name: Upload V9 KSU_SUKI_S_KPM_DTB Kernel
       uses: actions/upload-artifact@v4
       with:
-        name: Pangu_V9_KSU_SUKI_S_KPM-kernel-${{ steps.get_time.outputs.TIME }}
+        name: Pangu_V9_KSU_SUKI_S_KPM_DTB-kernel-${{ steps.get_time.outputs.TIME }}
         path: "Pangu_V9_KSU_SUKI_S_KPM_DTB-*.img"
 
-    - name: Build P10 KSU_SUKI_S_KPM Kernel
+    - name: Build P10 KSU_SUKI_S_KPM_DTB Kernel
       run: |
         if [ -d include/config ];
          then
@@ -139,8 +140,9 @@ jobs:
         rm -rf SukiSU-Ultra
         rm -rf drivers/kernelsu
         rm -rf out
-        rm -rf Pangu_V9_KSU_SUKI_S_KPM-*.img
+        rm -rf Pangu_V9_KSU_SUKI_S_KPM_DTB-*.img
         rm -rf kernelpatch-a
+        cp kernelpatch-b/Makefile $(pwd)/arch/arm64/
         curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-1.5.7
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
@@ -159,11 +161,11 @@ jobs:
         mv -f oImage Image
         gzip -k Image Image.gz
         cd ..
-        tools/mkbootimg --kernel kernelpatch-a/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=enforcing buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_P10_KSU_SUKI_S_KPM-enforcing-${{ steps.get_time.outputs.TIME }}.img
-        tools/mkbootimg --kernel kernelpatch-a/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=permissive buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_P10_KSU_SUKI_S_KPM-permissive-${{ steps.get_time.outputs.TIME }}.img
+        tools/mkbootimg --kernel kernelpatch-a/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=enforcing buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_P10_KSU_SUKI_S_KPM_DTB-enforcing-${{ steps.get_time.outputs.TIME }}.img
+        tools/mkbootimg --kernel kernelpatch-a/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=permissive buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_P10_KSU_SUKI_S_KPM_DTB-permissive-${{ steps.get_time.outputs.TIME }}.img
 
     - name: Upload P10 KSU_SUKI_S_KPM Kernel
       uses: actions/upload-artifact@v4
       with:
-        name: Pangu_P10_KSU_SUKI_S_KPM-kernel-${{ steps.get_time.outputs.TIME }}
-        path: "Pangu_P10_KSU_SUKI_S_KPM-*.img"
+        name: Pangu_P10_KSU_SUKI_S_KPM_DTB-kernel-${{ steps.get_time.outputs.TIME }}
+        path: "Pangu_P10_KSU_SUKI_S_KPM_DTB-*.img"
