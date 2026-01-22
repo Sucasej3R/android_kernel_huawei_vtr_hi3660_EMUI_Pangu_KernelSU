@@ -67,7 +67,7 @@ jobs:
         rm -rf SukiSU-Ultra
         rm -rf drivers/kernelsu
         rm -rf out
-        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s nongki
+        curl -LSs "https://raw.githubusercontent.com/littlepe/SukiSU-Ultra/susfs-1.5.7_manual(backup)/kernel/setup.sh" | bash -s susfs-1.5.7_manual(backup)
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
@@ -98,7 +98,7 @@ jobs:
         rm -rf drivers/kernelsu
         rm -rf out
         rm -rf Pangu_V9_KSU_SUKI_N-*.img
-        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s nongki
+        curl -LSs "https://raw.githubusercontent.com/littlepe/SukiSU-Ultra/susfs-1.5.7_manual(backup)/kernel/setup.sh" | bash -s susfs-1.5.7_manual(backup)
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
@@ -139,7 +139,7 @@ jobs:
         rm -rf drivers/kernelsu
         rm -rf out
         rm -rf Pangu_P10_KSU_SUKI_N-*.img
-        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s nongki
+        curl -LSs "https://raw.githubusercontent.com/littlepe/SukiSU-Ultra/susfs-1.5.7_manual(backup)/kernel/setup.sh" | bash -s susfs-1.5.7_manual(backup)
         cp -r KSU_Suki_Patch_file/drivers/kernelsu/kpm/super_access.c $(pwd)/drivers/kernelsu/kpm/
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
@@ -183,7 +183,7 @@ jobs:
         rm -rf drivers/kernelsu
         rm -rf out
         rm -rf Pangu_V9_KSU_SUKI_N_KPM-*.img
-        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s nongki
+        curl -LSs "https://raw.githubusercontent.com/littlepe/SukiSU-Ultra/susfs-1.5.7_manual(backup)/kernel/setup.sh" | bash -s susfs-1.5.7_manual(backup)
         cp -r KSU_Suki_Patch_file/drivers/kernelsu/kpm/super_access.c $(pwd)/drivers/kernelsu/kpm/
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
@@ -262,7 +262,7 @@ jobs:
         rm -rf drivers/kernelsu
         rm -rf out
         rm -rf Pangu_P10_KSU_SUKI_N_KPM-*.img
-        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-1.5.7
+        curl -LSs "https://raw.githubusercontent.com/littlepe/SukiSU-Ultra/susfs-1.5.7_manual(backup)/kernel/setup.sh" | bash -s susfs-1.5.7_manual(backup)
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
@@ -293,7 +293,7 @@ jobs:
         rm -rf drivers/kernelsu
         rm -rf out
         rm -rf Pangu_V9_KSU_SUKI_S-*.img
-        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-1.5.7
+        curl -LSs "https://raw.githubusercontent.com/littlepe/SukiSU-Ultra/susfs-1.5.7_manual(backup)/kernel/setup.sh" | bash -s susfs-1.5.7_manual(backup)
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
@@ -328,7 +328,7 @@ jobs:
         rm -rf drivers/kernelsu
         rm -rf out
         rm -rf Pangu_P10_KSU_SUKI_S-*.img
-        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-1.5.7
+        curl -LSs "https://raw.githubusercontent.com/littlepe/SukiSU-Ultra/susfs-1.5.7_manual(backup)/kernel/setup.sh" | bash -s susfs-1.5.7_manual(backup)
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
@@ -371,7 +371,7 @@ jobs:
         rm -rf drivers/kernelsu
         rm -rf out
         rm -rf Pangu_V9_KSU_SUKI_S_KPM-*.img
-        curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-1.5.7
+        curl -LSs "https://raw.githubusercontent.com/littlepe/SukiSU-Ultra/susfs-1.5.7_manual(backup)/kernel/setup.sh" | bash -s susfs-1.5.7_manual(backup)
         export PATH=$(pwd)/ToolChains/bin/:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
