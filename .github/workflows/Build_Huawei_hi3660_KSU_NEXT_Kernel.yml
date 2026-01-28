@@ -1,9 +1,6 @@
 ﻿name: Build_Huawei_hi3660_KSU_NEXT_Kernel
 on:
   workflow_dispatch:
-  schedule:
-      # Run once at 12:00 on Saturday.. See http://crontab.guru
-      - cron: '00 12 * * 6'
   push:
     branches:
       - HEAD
