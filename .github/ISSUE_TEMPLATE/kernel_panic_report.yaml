@@ -24,7 +24,7 @@ body:
           - label: I searched the issues and didn't found anything relevant | 我已经搜索了 Issues 列表，没有发现于本问题相关内容
             required: true
 
-          - label: I will upload the dmesg-ramoops-0 (if available) and console-ramoops-0 files (obtained under third-party Recovery, path: sys/fs/pstore) | 我会上传 dmesg-ramoops-0（如果有） 和 console-ramoops-0 文件（在第三方Recovery下获取，路径：sys/fs/pstore）
+          - label: I will upload the dmesg-ramoops-0 (if available) and console-ramoops-0 files (obtained under third-party Recovery, path:sys/fs/pstore) | 我会上传 dmesg-ramoops-0（如果有） 和 console-ramoops-0 文件（在第三方Recovery下获取，路径：sys/fs/pstore）
             required: true
             
           - label: I have confirmed that the issue is not caused by modifications like magisk or similar issues | 我已经确认不是由于magisk等相关修改导致的问题
